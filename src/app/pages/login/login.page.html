@@ -1,0 +1,59 @@
+<ion-content>
+	<ion-grid>
+		<ion-row>
+			<ion-col size="12">
+				<ion-item lines="none">
+					<img src="assets/images/logo_mr_help.png" class="img-logo">
+				</ion-item>
+			</ion-col>
+		</ion-row>
+		<ion-row>
+			<form [formGroup]="formLogin" (ngSubmit)="login(formLogin.value)">
+				<ion-row>
+					<ion-col size="12">
+						<ion-item>
+							<ion-input type="text" placeholder="Usuario" formControlName="user" required></ion-input>
+						</ion-item>	
+					</ion-col>
+				</ion-row>
+				<ion-row>
+					<ion-col size="12">
+						<ion-item>
+							<ion-input type="password" placeholder="Contraseña" formControlName="password" required></ion-input>
+						</ion-item>	
+					</ion-col>
+				</ion-row>
+				<ion-row>
+					<ion-col size="12">
+						<ion-button 
+							class="submit-btn" 
+							expand="block" 
+							type="submit" 
+							[disabled]="!formLogin.valid"
+						>
+							Iniciar
+						</ion-button>
+					</ion-col>
+					<ion-col size="12">
+						<ion-item lines="none" class="forget-password">
+							<a href="">¿Olvidaste tu contraseña?</a>
+						</ion-item>
+					</ion-col>
+				</ion-row>
+
+			</form>
+		</ion-row>
+		<ion-row>
+			<ion-col size="12">
+				<ion-button 
+					class="signup-btn" 
+					expand="block"
+					routerLink="/signup"
+				>
+					Registrarse
+				</ion-button>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
+
+</ion-content>

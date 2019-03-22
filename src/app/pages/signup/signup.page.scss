@@ -1,0 +1,32 @@
+@import '../../../assets/styles/styles';
+
+ion-toolbar {
+	--background: #123380;
+}
+
+ion-title {
+	color: #fff;
+}
+
+.btn-signup {
+	@extend %btn-shared;
+	--background: #f5b43d;
+	height: 75%;
+}
+
+.signup-form {
+    margin-bottom: 80px;
+}
+
+ion-input {
+    border: solid 1px #bababa;
+    --padding-start: 10px !important;
+}
+
+.term-condition ion-item p {
+	font-size: 11px;
+}
+
+ion-back-button {
+	--color: #fff;
+}

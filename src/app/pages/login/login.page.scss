@@ -1,0 +1,45 @@
+@import '../../../assets/styles/styles';
+.img-logo{
+    width: 130px;
+    height: 130px;
+    margin: auto;
+    border: solid 6px $secondary-color;
+    border-radius: 100px;
+}
+
+.submit-btn {
+    @extend %btn-shared;
+    margin: auto;
+    margin-top: 30px;
+    
+}
+
+ion-button.signup-btn {
+    --background: #f5b43d;
+    @extend %btn-shared;
+}
+
+ion-button {
+  --background: #de3a24;
+}
+
+ion-grid {
+    margin-top: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.forget-password{
+	--background: var(--ion-item-background,var(--ion-background-color,transparent));
+	a {
+		margin-left: 4.8em;
+		color: #bababa;
+		font-size: 0.9em;
+		margin-top: -2.2em;
+	}
+}
+
+.sc-ion-input-md-h {
+	--placeholder-color: grey;
+}
+
