@@ -21,14 +21,20 @@ export class LoginPage implements OnInit {
 
 	ngOnInit() {
 		this.formLogin = new FormGroup({
-			user: new FormControl(),
+			email: new FormControl(),
 			password: new FormControl()
 		});
 	}
 
 	login(value) {
 		this.loginService.login(value)
-		.subscribe()
+		.subscribe(res => {
+			if (res.status === 'success') {
+				localStorage.setItem('token', res.token)
+				// move to another page
+			}
+			console.log(res)
+		})	
 	}
 
 }

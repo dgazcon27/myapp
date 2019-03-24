@@ -7,22 +7,28 @@ import { ApiConfig } from './api-config';
 @Injectable({
   providedIn: 'root'
 })
+
 export class LoginService {
 	constructor(
 		private http: HttpClient,
 		private apiconfig: ApiConfig,
 	) { }
 
-	login(value): Observable<any> {
-		console.log(this.apiconfig.getApiUrl())
-		let response = false;
-		if (value.user === 'user' && value.password === '1234') {
-			response = true
-		}
-		return 
-		// return of this.http.get<Hero>(url).pipe(
-	 //      tap(_ => this.log(`fetched hero id=${id}`)),
-	 //      catchError(this.handleError<Hero>(`getHero id=${id}`))
-	 //    );
+	httpOptions = {
+		headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+	}
+	
+
+	login(value: any): Observable<any> {
+
+		return this.http.post<any>(
+			this.apiconfig.getApiUrl(),
+			value,
+			this.httpOptions
+		)
+		.pipe(
+			tap(res => this.apiconfig.log(res)),
+			catchError(this.apiconfig.handleError(`login ${value}`))
+		);
 	}
 }
