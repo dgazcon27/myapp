@@ -8,8 +8,9 @@ import { catchError, map, tap } from 'rxjs/operators';
 })
 
 export class ApiConfig {
-	private apiUrl: string = 'http://jointlic.tk/mrhelp/public/api/login';
-	private httpOptions: {};
+	private apiUrlRoot: string = 'http://jointlic.tk/mrhelp/public/api';
+	private apiUrl: string = ''
+	private httpOptions = {};
 
 	public getApiUrl() {
 		return this.apiUrl;
@@ -19,10 +20,13 @@ export class ApiConfig {
 		return this.httpOptions;
 	}
 
+	public setApiUrl(route): void {
+		this.apiUrl = `${this.apiUrlRoot}/${route}`;
+	}
+
 	public setHeader(head): any {
 		let header = new HttpHeaders;
 		head.map(item => {
-			// this.httpOptions.header.set(item.name, item.value)
 			header.set(item.name, item.value)
 		})
 		this.httpOptions = {

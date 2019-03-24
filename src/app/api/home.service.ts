@@ -2,42 +2,37 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
+import { ApiConfig } from './api-config'
 
 @Injectable({
   providedIn: 'root'
 })
 export class HomeService {
-	items: Array<any> = [
-		{
-			'id': "1",
-			'title': "Example 1",
-			'description': 'description 1'
-		},
-		{
-			'id': "2",
-			'title': "Example 2",
-			'description': 'description 2'
-		},
-		{
-			'id': "3",
-			'title': "Example 3",
-			'description': 'description 3'
-		},
-		{
-			'id': "4",
-			'title': "Example 4",
-			'description': 'description 4'
-		},
-		{
-			'id': "5",
-			'title': "Need a more complex app?",
-			'description': 'Check the Ionic 4 Full Starter App.'
-		}
-	];
- 	constructor(private http: HttpClient,) { }
+	items: Array<any> = [];
 
- 	getItem(): Observable<any[]>{
- 		return of(this.items)
+	httpOptions = {
+		headers: new HttpHeaders({
+			'Content-Type': 'application/json',
+			'Authorization': localStorage.getItem('token')
+		})
+	}
+
+ 	constructor(
+ 		private http: HttpClient,
+ 		private apiconfig: ApiConfig
+	) { }
+
+ 	getItem(): Observable<any>{
+ 		this.apiconfig.setApiUrl('services')
+ 		return this.http.post<any>(
+ 			this.apiconfig.getApiUrl(),
+ 			{},
+ 			this.httpOptions
+		)
+		.pipe(
+			tap(res => res),
+			catchError(this.apiconfig.handleError(`GETTING ITEMS`))
+		)
  	}
 
  	getItemByID(id: string): Observable<any> {

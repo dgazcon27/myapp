@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>¿Que servicios prestas?</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <!-- <ion-item *ngFor="let item of items">
+      <ion-label>
+        {{ item.description }}
+      </ion-label>
+      <ion-label>
+        {{ item.description }}
+      </ion-label>
+    </ion-item> -->
+	<ion-card *ngFor="let item of items">
+		<ion-card-header>
+			<ion-card-subtitle>Dias activo: {{item.overdue_time}}</ion-card-subtitle>
+			<ion-card-title>{{item.description}}</ion-card-title>
+		</ion-card-header>
+
+		<ion-card-content>
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+		</ion-card-content>
+	</ion-card>
+  </ion-list>
+</ion-content>

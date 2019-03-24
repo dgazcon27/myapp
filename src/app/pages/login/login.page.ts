@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { LoginService } from '../../api/login.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -12,7 +13,8 @@ export class LoginPage implements OnInit {
 
 	constructor(
 		public formBuilder: FormBuilder,
-		private loginService: LoginService
+		private loginService: LoginService,
+		private router: Router
 	) {
 
 	}
@@ -26,14 +28,19 @@ export class LoginPage implements OnInit {
 		});
 	}
 
+	go(route) {
+		this.router.navigate([`/${route}`])
+	}
+
 	login(value) {
 		this.loginService.login(value)
 		.subscribe(res => {
 			if (res.status === 'success') {
-				localStorage.setItem('token', res.token)
-				// move to another page
+				localStorage.clear();
+				console.log(res.api_token)
+				localStorage.setItem('token', `Bearer ${res.api_token}`)
+				this.go('home')
 			}
-			console.log(res)
 		})	
 	}
 

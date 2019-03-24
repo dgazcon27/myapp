@@ -17,10 +17,9 @@ export class LoginService {
 	httpOptions = {
 		headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 	}
-	
 
 	login(value: any): Observable<any> {
-
+		this.apiconfig.setApiUrl('login')
 		return this.http.post<any>(
 			this.apiconfig.getApiUrl(),
 			value,

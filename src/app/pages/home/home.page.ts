@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HomeService } from '../api/home.service'
+import { HomeService } from '../../api/home.service'
 import { Router } from '@angular/router';
 
 @Component({
@@ -21,6 +21,9 @@ export class HomePage implements OnInit {
 
 	getItems(): void {
 		this.homeService.getItem()
-		.subscribe(items => this.items = items)
+		.subscribe(items => {
+			this.items = items.data
+			console.log(items)
+		})
 	}
 }
