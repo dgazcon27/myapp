@@ -34,14 +34,14 @@ export class HomePage implements OnInit {
 			header: 'Mr Help',
 			message: '¿Desea cerrar sesion?',
 				buttons: [{
-					text: 'Cancel',
+					text: 'Cancelar',
 					role: 'cancel',
 					cssClass: 'secondary',
 						handler: (blah) => {
 						console.log('Confirm Cancel: blah');
 					}
 				},{
-					text: 'Okay',
+					text: 'Ok',
 					handler: () => {
 						localStorage.clear();
 						this.router.navigate(['/login']);
