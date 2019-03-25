@@ -20,12 +20,14 @@ export class LoginPage implements OnInit {
 	}
 
 	formLogin: FormGroup;
+	errorStatus: boolean;
 
 	ngOnInit() {
 		this.formLogin = new FormGroup({
 			email: new FormControl(),
 			password: new FormControl()
 		});
+		this.errorStatus = false
 	}
 
 	go(route) {
@@ -40,8 +42,14 @@ export class LoginPage implements OnInit {
 				console.log(res.api_token)
 				localStorage.setItem('token', `Bearer ${res.api_token}`)
 				this.go('home')
+			} else if (res.status === 'failed') {
+				this.errorStatus = true;
 			}
 		})	
+	}
+
+	reset() {
+		this.errorStatus = false;
 	}
 
 }
